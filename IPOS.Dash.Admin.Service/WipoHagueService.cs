@@ -7,7 +7,7 @@ using IPOS.Dash.Admin.Data;
 
 namespace IPOS.Dash.Admin.Service
 {
-    public class WipoHague
+    public class WipoHagueService
     {
         IposAdminEntities db = new IposAdminEntities();
 
