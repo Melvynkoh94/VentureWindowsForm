@@ -153,6 +153,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\WipoHagueViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -197,7 +198,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -209,6 +209,16 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\IPOS.Dash.Admin.Data\IPOS.Dash.Admin.Data.csproj">
+      <Project>{9673DD22-7E44-4B08-B134-03349C02C8DE}</Project>
+      <Name>IPOS.Dash.Admin.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\IPOS.Dash.Admin.Service\IPOS.Dash.Admin.Service.csproj">
+      <Project>{C78DC6B8-52C8-4A52-B185-CCF576B2A540}</Project>
+      <Name>IPOS.Dash.Admin.Service</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
