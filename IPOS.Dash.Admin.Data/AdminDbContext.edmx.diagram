@@ -5,7 +5,7 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="1b9f929ce2fd4bc997941992a3f562a5" Name="Diagram1">
-        <EntityTypeShape EntityType="AdminDbContext.FCT_DS_WIPOHague" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AdminDbContext.FCT_DS_WIPOHague" Width="1.5" PointX="5.875" PointY="0.5" IsExpanded="true" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
