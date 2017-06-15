@@ -3,6 +3,7 @@ using IPOS.Dash.Admin.Service;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
 
@@ -12,12 +13,12 @@ namespace IPOS.Dash.Admin.Web.Controllers
 
     public class WipohagueController : Controller
     {
+        WipoHagueService svc = new WipoHagueService();
 
         // GET: wipohague
         public ActionResult Index()
         {
 
-            WipoHagueService svc = new WipoHagueService();
 
             List<FCT_DS_WIPOHague> wipoList = svc.GetAll();
 
@@ -40,24 +41,26 @@ namespace IPOS.Dash.Admin.Web.Controllers
 
         // POST: wipohague/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
-        {
+        
+        public ActionResult Create(FCT_DS_WIPOHague createnew)
+        {            
             try
             {
-                FCT_DS_WIPOHagues.Add(collection);
-                IPOS.Dash.Admin.Data.SaveChanges();
+                svc.Create(createnew);
                 return RedirectToAction("Index");
             }
             catch
             {
-                return View();
+                throw;
             }
         }
 
+        [HttpGet]
         // GET: wipohague/Edit/5
-        public ActionResult Edit(int id)
+        public ActionResult Edit(int? Id)
         {
-            return View();
+            svc.Update(Id);
+            return RedirectToAction("Index");
         }
 
         // POST: wipohague/Edit/5

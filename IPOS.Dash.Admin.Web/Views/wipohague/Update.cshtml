@@ -1,12 +1,11 @@
 ﻿@model IPOS.Dash.Admin.Data.FCT_DS_WIPOHague
 
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "Edit Record";
 }
 
-<h2>New Record</h2>
+<h2>Edit Record</h2>
 <h3>WIPO-Hague</h3>
-
 
 @using (Html.BeginForm())
 {
@@ -14,80 +13,100 @@
 
     <div class="form-horizontal">
         <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.Id)
         <h4><span class="asd">System Message</span></h4>
 
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-
-        <p>Reporting Date: @DateTime.Now    CALENDAR WILL BE PLACED HERE</p>
-
-
-        @*----------------------------------------------*@
         <div class="form-group">
+            @Html.LabelFor(model => model.IntlRegistrations, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.Label("International Registrations")
                 @Html.EditorFor(model => model.IntlRegistrations, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.IntlRegistrations, "", new { @class = "text-danger" })
             </div>
         </div>
-        @*----------------------------------------------*@
+
         <div class="form-group">
+            @Html.LabelFor(model => model.DesignsIntlRegistrations, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.Label("Designs In International Registrations")
                 @Html.EditorFor(model => model.DesignsIntlRegistrations, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.DesignsIntlRegistrations, "", new { @class = "text-danger" })
             </div>
         </div>
-        @*----------------------------------------------*@
+
         <div class="form-group">
+            @Html.LabelFor(model => model.IntlApplications, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.Label("International Applications")
                 @Html.EditorFor(model => model.IntlApplications, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.IntlApplications, "", new { @class = "text-danger" })
             </div>
         </div>
-        @*----------------------------------------------*@
+
         <div class="form-group">
+            @Html.LabelFor(model => model.DesignsIntlApplications, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.Label("Designs In International Applications")
                 @Html.EditorFor(model => model.DesignsIntlApplications, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.DesignsIntlApplications, "", new { @class = "text-danger" })
             </div>
         </div>
-        @*----------------------------------------------*@
+
         <div class="form-group">
+            @Html.LabelFor(model => model.Renewals, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.Label("International Renewals")
                 @Html.EditorFor(model => model.Renewals, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Renewals, "", new { @class = "text-danger" })
             </div>
         </div>
-        @*----------------------------------------------*@
+
         <div class="form-group">
+            @Html.LabelFor(model => model.DesignsRenewals, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.Label("Designs In International Renewals")
                 @Html.EditorFor(model => model.DesignsRenewals, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.DesignsRenewals, "", new { @class = "text-danger" })
             </div>
         </div>
 
-        @*----------------------------------------------*@
-        <div class="form-group">
-            <div class="col-md-10">             
-                @Html.HiddenFor(model => model.IsDeleted, new { htmlAttributes = new { Value = "False" } })                     
-            </div>
-        </div>
-       
-
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create Record" class="btn btn-default" />
+                <input type="submit" value="Update Record" class="btn btn-default" />
             </div>
         </div>
     </div>
+    @*
+        @section Scripts {
+            @Scripts.Render("~/bundles/jqueryval")
+
+            <script src="~/Scripts/globalize/globalize.js"></script>
+            <script src="~/Scripts/globalize/cultures/globalize.culture.@(System.Threading.Thread.CurrentThread.CurrentCulture.Name).js"></script>
+            <script>
+        $.validator.methods.number = function (value, element) {
+            return this.optional(element) ||
+                !isNaN(Globalize.parseFloat(value));
+        }
+        $(document).ready(function () {
+            Globalize.culture('@(System.Threading.Thread.CurrentThread.CurrentCulture.Name)');
+        });
+            </script>
+            <script>
+        jQuery.extend(jQuery.validator.methods, {
+            range: function (value, element, param) {
+                //Use the Globalization plugin to parse the value
+                var val = Globalize.parseFloat(value);
+                return this.optional(element) || (
+                    val >= param[0] && val <= param[1]);
+            }
+        });
+        $.validator.methods.date = function (value, element) {
+            return this.optional(element) ||
+                Globalize.parseDate(value) ||
+                Globalize.parseDate(value, "yyyy-MM-dd");
+        }
+        </script>
+        }
+    *@
 }
 
 <div>
-    @Html.ActionLink("Back to WIPO-Hague Records", "Index")
+    @Html.ActionLink("Back to List of WipoHague Records", "Index")
 </div>
 
 @section Scripts {

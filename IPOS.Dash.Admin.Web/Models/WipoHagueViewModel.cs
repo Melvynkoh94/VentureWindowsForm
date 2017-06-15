@@ -9,9 +9,29 @@ namespace IPOS.Dash.Admin.Web.Models
     {
         public Guid Id { get; set; }
 
-        public int InternationalRegistrations { get; set; }
+        public string GroupType { get; set; }
+
+        public DateTime ReportingDate { get; set; }
+
+        public int IntlRegistrations { get; set; }
 
         public int DesignInternationalRegistrations { get; set; }
+
+        public int IntlApplications{ get; set; }
+
+        public int DesignsIntlApplications { get; set; }
+
+        public int Renewals { get; set; }
+
+        public int DesignsRenewals { get; set; }
+
+        public DateTime CreatedDate { get; set; }
+
+        public DateTime LastUpdateDate { get; set; }
+
+        public bool isDeleted { get; set; }
+
+        public DateTime DeletedDate { get; set; }
 
     }
 }
