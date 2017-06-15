@@ -200,6 +200,10 @@
     <Content Include="Service References\Application Insights\ConnectedService.json" />
     <Content Include="Views\wipohague\Index.cshtml" />
     <Content Include="Views\wipohague\Create.cshtml" />
+    <Content Include="Views\Threshold\Threshold.cshtml" />
+    <Content Include="Views\Threshold\ThresholdHistory.cshtml" />
+    <Content Include="Views\CountryMapping\CountryMapping.cshtml" />
+    <Content Include="Views\CountryMapping\EditCountry.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
