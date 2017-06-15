@@ -1,0 +1,95 @@
+﻿@model IPOS.Dash.Admin.Data.FCT_DS_WIPOHague
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>New Record</h2>
+<h3>WIPO-Hague</h3>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <hr />
+        <h4><span class="asd">System Message</span></h4>
+
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <p>Reporting Date: @DateTime.Now    CALENDAR WILL BE PLACED HERE</p>
+
+
+        @*----------------------------------------------*@
+        <div class="form-group">
+            <div class="col-md-10">
+                @Html.Label("International Registrations")
+                @Html.EditorFor(model => model.IntlRegistrations, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.IntlRegistrations, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        @*----------------------------------------------*@
+        <div class="form-group">
+            <div class="col-md-10">
+                @Html.Label("Designs In International Registrations")
+                @Html.EditorFor(model => model.DesignsIntlRegistrations, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.DesignsIntlRegistrations, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        @*----------------------------------------------*@
+        <div class="form-group">
+            <div class="col-md-10">
+                @Html.Label("International Applications")
+                @Html.EditorFor(model => model.IntlApplications, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.IntlApplications, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        @*----------------------------------------------*@
+        <div class="form-group">
+            <div class="col-md-10">
+                @Html.Label("Designs In International Applications")
+                @Html.EditorFor(model => model.DesignsIntlApplications, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.DesignsIntlApplications, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        @*----------------------------------------------*@
+        <div class="form-group">
+            <div class="col-md-10">
+                @Html.Label("International Renewals")
+                @Html.EditorFor(model => model.Renewals, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Renewals, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        @*----------------------------------------------*@
+        <div class="form-group">
+            <div class="col-md-10">
+                @Html.Label("Designs In International Renewals")
+                @Html.EditorFor(model => model.DesignsRenewals, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.DesignsRenewals, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        @*----------------------------------------------*@
+        <div class="form-group">
+            <div class="col-md-10">             
+                @Html.HiddenFor(model => model.IsDeleted, new { htmlAttributes = new { Value = "False" } })                     
+            </div>
+        </div>
+       
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create Record" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to WIPO-Hague Records", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

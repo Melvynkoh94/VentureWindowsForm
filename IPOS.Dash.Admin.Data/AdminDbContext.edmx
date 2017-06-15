@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="AdminDbContext.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="AdminDbContext.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="FCT_DS_WIPOHague">
           <Key>
             <PropertyRef Name="Id" />
@@ -26,17 +26,19 @@
         <EntityContainer Name="AdminDbContextStoreContainer">
           <EntitySet Name="FCT_DS_WIPOHague" EntityType="Self.FCT_DS_WIPOHague" Schema="dw" store:Type="Tables" />
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="AdminDbContext" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="IposAdminEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="FCT_DS_WIPOHague" EntityType="AdminDbContext.FCT_DS_WIPOHague" />
+        </EntityContainer>
         <EntityType Name="FCT_DS_WIPOHague">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Guid" Nullable="false" />
-          <Property Name="GroupType" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="GroupType" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
           <Property Name="ReportingDate" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="IntlRegistrations" Type="Int32" Nullable="false" />
           <Property Name="DesignsIntlRegistrations" Type="Int32" Nullable="false" />
@@ -45,13 +47,10 @@
           <Property Name="Renewals" Type="Int32" Nullable="false" />
           <Property Name="DesignsRenewals" Type="Int32" Nullable="false" />
           <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="LastUpdateDate" Type="DateTime" Precision="3" />
-          <Property Name="IsDeleted" Type="Boolean" />
+          <Property Name="LastUpdateDate" Type="DateTime" Precision="3" Nullable="true" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="true" />
           <Property Name="DeletedDate" Type="DateTime" Precision="3" />
         </EntityType>
-        <EntityContainer Name="IposAdminEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="FCT_DS_WIPOHague" EntityType="Self.FCT_DS_WIPOHague" />
-        </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -61,19 +60,19 @@
           <EntitySetMapping Name="FCT_DS_WIPOHague">
             <EntityTypeMapping TypeName="AdminDbContext.FCT_DS_WIPOHague">
               <MappingFragment StoreEntitySet="FCT_DS_WIPOHague">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="GroupType" ColumnName="GroupType" />
-                <ScalarProperty Name="ReportingDate" ColumnName="ReportingDate" />
-                <ScalarProperty Name="IntlRegistrations" ColumnName="IntlRegistrations" />
-                <ScalarProperty Name="DesignsIntlRegistrations" ColumnName="DesignsIntlRegistrations" />
-                <ScalarProperty Name="IntlApplications" ColumnName="IntlApplications" />
-                <ScalarProperty Name="DesignsIntlApplications" ColumnName="DesignsIntlApplications" />
-                <ScalarProperty Name="Renewals" ColumnName="Renewals" />
-                <ScalarProperty Name="DesignsRenewals" ColumnName="DesignsRenewals" />
-                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
-                <ScalarProperty Name="LastUpdateDate" ColumnName="LastUpdateDate" />
-                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
                 <ScalarProperty Name="DeletedDate" ColumnName="DeletedDate" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="LastUpdateDate" ColumnName="LastUpdateDate" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="DesignsRenewals" ColumnName="DesignsRenewals" />
+                <ScalarProperty Name="Renewals" ColumnName="Renewals" />
+                <ScalarProperty Name="DesignsIntlApplications" ColumnName="DesignsIntlApplications" />
+                <ScalarProperty Name="IntlApplications" ColumnName="IntlApplications" />
+                <ScalarProperty Name="DesignsIntlRegistrations" ColumnName="DesignsIntlRegistrations" />
+                <ScalarProperty Name="IntlRegistrations" ColumnName="IntlRegistrations" />
+                <ScalarProperty Name="ReportingDate" ColumnName="ReportingDate" />
+                <ScalarProperty Name="GroupType" ColumnName="GroupType" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
