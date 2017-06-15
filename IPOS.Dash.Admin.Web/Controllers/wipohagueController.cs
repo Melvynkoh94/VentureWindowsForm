@@ -10,14 +10,15 @@ using System.Web.Mvc;
 namespace IPOS.Dash.Admin.Web.Controllers
 {
 
-    public class wipohagueController : Controller
+    public class WipohagueController : Controller
     {
-        WipoHague wipo = new WipoHague();
 
         // GET: wipohague
         public ActionResult Index()
         {
-            List<FCT_DS_WIPOHague> wipoList = wipo.GetAll();
+
+            WipoHagueService svc = new WipoHagueService();
+            List<FCT_DS_WIPOHague> wipoList = svc.GetAll();
             return View(wipoList);
         }
 
