@@ -43,7 +43,7 @@ namespace IPOS.Dash.Admin.Web.Controllers
             try
             {
                 
-                // TODO: Add insert logic here
+                
 
                 return RedirectToAction("Index");
             }
