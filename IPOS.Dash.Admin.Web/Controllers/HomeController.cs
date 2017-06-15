@@ -1,4 +1,6 @@
-﻿using System;
+﻿using IPOS.Dash.Admin.Data;
+using IPOS.Dash.Admin.Service;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -12,6 +14,11 @@ namespace IPOS.Dash.Admin.Web.Controllers
 
         public ActionResult Index()
         {
+            WipoHagueService wservice = new WipoHagueService();
+
+            List<FCT_DS_WIPOHague> list = wservice.GetAll();
+
+
             return View();
         }
 

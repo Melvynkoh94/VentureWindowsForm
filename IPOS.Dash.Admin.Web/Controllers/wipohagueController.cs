@@ -18,7 +18,9 @@ namespace IPOS.Dash.Admin.Web.Controllers
         {
 
             WipoHagueService svc = new WipoHagueService();
+
             List<FCT_DS_WIPOHague> wipoList = svc.GetAll();
+
             return View(wipoList);
         }
 

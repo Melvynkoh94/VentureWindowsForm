@@ -53,40 +53,37 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.GroupType)
+            @item.GroupType
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.ReportingDate)
+            @item.ReportingDate.ToShortDateString()
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.IntlRegistrations)
+            @item.IntlRegistrations
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.DesignsIntlRegistrations)
+            @item.DesignsIntlRegistrations
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.IntlApplications)
+            @item.IntlApplications
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.DesignsIntlApplications)
+            @item.DesignsIntlApplications
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Renewals)
+            @item.Renewals
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.DesignsRenewals)
+            @item.DesignsRenewals
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.CreatedDate)
+            @item.CreatedDate.ToShortDateString()
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.LastUpdateDate)
+            @item.LastUpdateDate
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.IsDeleted)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DeletedDate)
+            @item.DeletedDate
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
