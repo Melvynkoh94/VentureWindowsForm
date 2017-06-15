@@ -38,22 +38,7 @@ namespace IPOS.Dash.Admin.Web.Controllers
             return View(info);
         }
 
-        // POST: wipohague/Create
-        [HttpPost]
-        public ActionResult Create(FormCollection collection)
-        {
-            try
-            {
-                FCT_DS_WIPOHagues.Add(collection);
-                IPOS.Dash.Admin.Data.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
+     
         // GET: wipohague/Edit/5
         public ActionResult Edit(int id)
         {

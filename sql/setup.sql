@@ -49,3 +49,19 @@ GO
 ALTER TABLE [dw].[FCT_DS_WIPOHague] ADD  CONSTRAINT [DF_DS_WIPOHague_CreatedDate]  DEFAULT (getdate()) FOR [CreatedDate]
 GO
 
+
+CREATE TABLE [dbo].[dw.FCT_DS_ExaminerCount](
+	[ID] [int] NOT NULL,
+	[Threshold] [int] NOT NULL,
+	[EffectiveDate] [datetime] NOT NULL,
+	[ExpiryDate] [datetime] NOT NULL,
+	[CreatedDate] [datetime] NOT NULL,
+	[LastUpdateDate] [datetime] NULL,
+	[IsDeleted] [bit] NULL,
+	[DeletedDate] [datetime] NULL,
+ CONSTRAINT [PK_dw.FCT_DS_ExaminerCount] PRIMARY KEY CLUSTERED 
+(
+	[ID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
