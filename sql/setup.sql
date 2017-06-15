@@ -50,7 +50,7 @@ ALTER TABLE [dw].[FCT_DS_WIPOHague] ADD  CONSTRAINT [DF_DS_WIPOHague_CreatedDate
 GO
 
 
-CREATE TABLE [dbo].[dw.FCT_DS_ExaminerCount](
+CREATE TABLE [dbo].[dw.ExaminerCount](
 	[ID] [int] NOT NULL,
 	[Threshold] [int] NOT NULL,
 	[EffectiveDate] [datetime] NOT NULL,
