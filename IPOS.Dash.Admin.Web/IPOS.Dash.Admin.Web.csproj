@@ -198,8 +198,8 @@
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Service References\Application Insights\ConnectedService.json" />
-    <Content Include="Views\WipoHague\Index.cshtml" />
     <Content Include="Views\WipoHague\Create.cshtml" />
+    <Content Include="Views\WipoHague\Index.cshtml" />
     <Content Include="Views\WipoHague\Update.cshtml" />
   </ItemGroup>
   <ItemGroup>
