@@ -1,5 +1,6 @@
 ﻿using IPOS.Dash.Admin.Data;
 using IPOS.Dash.Admin.Service;
+using IPOS.Dash.Admin.Web.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,10 +20,21 @@ namespace IPOS.Dash.Admin.Web.Controllers
         public ActionResult Index()
         {
 
+            List<WipoHagueViewModel> wipoHagueList = new List<WipoHagueViewModel>();
+            List<FCT_DS_WIPOHague> dataModelList = svc.GetAll();
 
-            List<FCT_DS_WIPOHague> wipoList = svc.GetAll();
+            foreach(FCT_DS_WIPOHague item in dataModelList)
+            {
+                // Do mapping here
+                WipoHagueViewModel wipo = new WipoHagueViewModel();
+                wipo.IntlApplications = item.IntlApplications;
+                // Todo: continue with the rest of the mappings
 
-            return View(wipoList);
+                // Insert into list
+                wipoHagueList.Add(wipo);                
+            }
+
+            return View(wipoHagueList);
         }
 
         // GET: wipohague/Details/5
