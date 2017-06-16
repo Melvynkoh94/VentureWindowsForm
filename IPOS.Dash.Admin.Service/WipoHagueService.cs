@@ -48,7 +48,7 @@ namespace IPOS.Dash.Admin.Service
         }
 
 
-        public FCT_DS_WIPOHague Update(int? Id)
+        public FCT_DS_WIPOHague Update(Guid? Id)
         {
             if (Id == null)
             {
