@@ -22,15 +22,26 @@ namespace IPOS.Dash.Admin.Web.Controllers
 
             List<WipoHagueViewModel> wipoHagueList = new List<WipoHagueViewModel>();
             List<FCT_DS_WIPOHague> dataModelList = svc.GetAll();
-
-            foreach(FCT_DS_WIPOHague item in dataModelList)
+            
+            foreach (FCT_DS_WIPOHague item in dataModelList)
             {
                 // Do mapping here
                 WipoHagueViewModel wipo = new WipoHagueViewModel();
+                wipo.GroupType = item.GroupType;
+                wipo.ReportingDate = item.ReportingDate;
+                wipo.DesignsIntlRegistrations = item.DesignsIntlRegistrations;
+            
                 wipo.IntlApplications = item.IntlApplications;
-                // Todo: continue with the rest of the mappings
+                wipo.DesignsIntlApplications = item.DesignsIntlApplications;
+                wipo.Renewals = item.Renewals;
+                wipo.DesignsRenewals = item.DesignsRenewals;
 
-                // Insert into list
+                wipo.CreatedDate = item.CreatedDate;
+                wipo.LastUpdateDate = item.LastUpdateDate;              
+                wipo.IsDeleted = item.IsDeleted;
+                wipo.DeletedDate = item.DeletedDate;
+
+
                 wipoHagueList.Add(wipo);                
             }
 
@@ -47,8 +58,9 @@ namespace IPOS.Dash.Admin.Web.Controllers
         // GET: wipohague/Create
         public ActionResult Create()
         {
-            FCT_DS_WIPOHague info = new FCT_DS_WIPOHague();
-            return View(info);
+            //FCT_DS_WIPOHague info = new FCT_DS_WIPOHague();
+           
+            return View();
         }
 
         // POST: wipohague/Create
@@ -57,8 +69,8 @@ namespace IPOS.Dash.Admin.Web.Controllers
         public ActionResult Create(FCT_DS_WIPOHague createnew)
         {            
             try
-            {
-                svc.Create(createnew);
+            {              
+                bool status = svc.Create(createnew);
                 return RedirectToAction("Index");
             }
             catch

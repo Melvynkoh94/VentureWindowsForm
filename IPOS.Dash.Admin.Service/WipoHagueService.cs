@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Web;
+using System.Net;
 using System.Threading.Tasks;
 using IPOS.Dash.Admin.Data;
+using System.Data.Entity;
 
 
 namespace IPOS.Dash.Admin.Service
@@ -17,17 +19,27 @@ namespace IPOS.Dash.Admin.Service
         {
             return db.FCT_DS_WIPOHague.Where(w => w.IsDeleted != true).ToList();
         }
-        
-        public void Create(FCT_DS_WIPOHague entry)
+
+        public bool Create(FCT_DS_WIPOHague entry)
         {
-           try
+            try
             {
                 entry.Id = Guid.NewGuid();
                 entry.GroupType = "HELLO";
-                entry.IsDeleted = false;                            
+                entry.IsDeleted = false;
                 entry.CreatedDate = DateTime.Now;
                 db.FCT_DS_WIPOHague.Add(entry);
-                db.SaveChanges();
+                
+                if(db.SaveChanges() > 0)
+                {
+                    // Save success
+                    return true;
+                }
+                else
+                {
+                    // Failed Save
+                    return false;
+                }
             }
             catch
             {
@@ -36,10 +48,25 @@ namespace IPOS.Dash.Admin.Service
         }
 
 
-        public void Update(FCT_DS_WIPOHague id)
+        public FCT_DS_WIPOHague Update(int? Id)
         {
-            FCT_DS_WIPOHague edit = db.FCT_DS_WIPOHague.Find(id);
+            if (Id == null)
+            {
+                return null;
+            }
+            FCT_DS_WIPOHague edit = db.FCT_DS_WIPOHague.Find(Id);
+            if (edit == null)
+            {
+                return null;
+            }
+            return edit;          
+        }
 
+        public FCT_DS_WIPOHague Update(FCT_DS_WIPOHague update)
+        {
+            db.Entry(update).State = EntityState.Modified;
+            db.SaveChanges();
+            return update;
         }
 
 

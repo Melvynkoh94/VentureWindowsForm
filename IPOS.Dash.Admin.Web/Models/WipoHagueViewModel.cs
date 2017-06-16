@@ -5,8 +5,9 @@ using System.Web;
 
 namespace IPOS.Dash.Admin.Web.Models
 {
-    public class WipoHagueViewModel
+    public class WipoHagueViewModel :   BaseView
     {
+        BaseView b = new BaseView();
 
         public Guid Id { get; set; }
 
@@ -16,7 +17,7 @@ namespace IPOS.Dash.Admin.Web.Models
 
         public int IntlRegistrations { get; set; }
 
-        public int DesignInternationalRegistrations { get; set; }
+        public int DesignsIntlRegistrations { get; set; }
 
         public int IntlApplications{ get; set; }
 
@@ -28,21 +29,54 @@ namespace IPOS.Dash.Admin.Web.Models
 
         public DateTime CreatedDate { get; set; }
 
-        public DateTime LastUpdateDate { get; set; }
+        public DateTime? LastUpdateDate {get; set; }
 
-        public bool isDeleted { get; set; }
+        public bool? IsDeleted { get; set; }
 
-        public DateTime DeletedDate { get; set; }
+        public DateTime? DeletedDate { get; set; }
 
-        public string FormattedCreatedDate {
+        public string FormatDateCreateDate
+        {
             get
             {
-                if(CreatedDate == null)
+                if (CreatedDate != null)
                 {
-                    return "";
+                    return b.FormattedDate(CreatedDate);
                 }
-
-                return CreatedDate.ToShortDateString();
+                return "-";
+            }
+        }
+        public string FormatDateLastUpdate
+        {
+            get
+            {
+                if (LastUpdateDate != null)
+                {
+                    return b.FormattedDate(LastUpdateDate);
+                }
+                return "-";
+            }
+        }
+        public string FormatDateDeletedDate
+        {
+            get
+            {
+                if (DeletedDate != null)
+                {
+                    return b.FormattedDate(DeletedDate);
+                }
+                return "-";
+            }
+        }
+        public string FormatDateReportingDate
+        {
+            get
+            {
+                if (ReportingDate != null)
+                {
+                    return b.FormattedDate(ReportingDate);
+                }
+                return "-";
             }
         }
 
