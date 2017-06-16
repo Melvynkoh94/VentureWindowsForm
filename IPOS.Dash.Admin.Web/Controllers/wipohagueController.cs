@@ -11,7 +11,7 @@ using System.Web.Mvc;
 namespace IPOS.Dash.Admin.Web.Controllers
 {
 
-    public class WipohagueController : Controller
+    public class WipoHagueController : Controller
     {
         WipoHagueService svc = new WipoHagueService();
 

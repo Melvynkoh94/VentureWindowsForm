@@ -150,7 +150,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\WipohagueController.cs" />
+    <Compile Include="Controllers\WipoHagueController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -198,9 +198,9 @@
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Service References\Application Insights\ConnectedService.json" />
-    <Content Include="Views\Wipohague\Index.cshtml" />
-    <Content Include="Views\Wipohague\Create.cshtml" />
-    <Content Include="Views\Wipohague\Update.cshtml" />
+    <Content Include="Views\WipoHague\Index.cshtml" />
+    <Content Include="Views\WipoHague\Create.cshtml" />
+    <Content Include="Views\WipoHague\Update.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
