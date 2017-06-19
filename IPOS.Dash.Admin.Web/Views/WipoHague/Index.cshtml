@@ -12,41 +12,53 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.GroupType)
+            Group Type 
+            @*@Html.DisplayNameFor(model => model.GroupType)*@
         </th>
+
         <th>
-            @Html.DisplayNameFor(model => model.ReportingDate)
+            Reporting Date
         </th>
+
+        <th>International Registrations
+        </th>
+
         <th>
-            @Html.DisplayNameFor(model => model.IntlRegistrations)
+            Designs in International Registrations        
         </th>
+
         <th>
-            @Html.DisplayNameFor(model => model.DesignsIntlRegistrations)
+           International Applications
         </th>
+
         <th>
-            @Html.DisplayNameFor(model => model.IntlApplications)
+            Designs in International Applications
         </th>
+
         <th>
-            @Html.DisplayNameFor(model => model.DesignsIntlApplications)
+            Renewals
         </th>
+
         <th>
-            @Html.DisplayNameFor(model => model.Renewals)
+            Designs in Renewals 
         </th>
+
         <th>
-            @Html.DisplayNameFor(model => model.DesignsRenewals)
+           Created Date
         </th>
+
         <th>
-            @Html.DisplayNameFor(model => model.CreatedDate)
+            Last Update Date
         </th>
+
         <th>
-            @Html.DisplayNameFor(model => model.LastUpdateDate)
+            Is Deleted
         </th>
+
         <th>
-            @Html.DisplayNameFor(model => model.IsDeleted)
+            Deleted Date
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.DeletedDate)
-        </th>
+
         <th></th>
     </tr>
 
@@ -59,7 +71,8 @@
             @item.FormatDateReportingDate
         </td>
         <td>
-            @item.IntlRegistrations
+            @*@item.IntlRegistrations*@
+            @Html.DisplayFor(modelItem => item.IntlRegistrations)
         </td>
         <td>
             @item.DesignsIntlRegistrations

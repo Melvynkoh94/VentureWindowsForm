@@ -48,7 +48,7 @@ namespace IPOS.Dash.Admin.Service
         }
 
 
-        public FCT_DS_WIPOHague Update(Guid? Id)
+        public FCT_DS_WIPOHague Retrieve(Guid? Id)
         {
             if (Id == null)
             {
@@ -62,11 +62,11 @@ namespace IPOS.Dash.Admin.Service
             return edit;          
         }
 
-        public FCT_DS_WIPOHague Update(FCT_DS_WIPOHague update)
+        public bool Update(FCT_DS_WIPOHague update)
         {
             db.Entry(update).State = EntityState.Modified;
             db.SaveChanges();
-            return update;
+            return true;
         }
 
 

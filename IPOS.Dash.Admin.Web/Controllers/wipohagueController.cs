@@ -15,8 +15,7 @@ namespace IPOS.Dash.Admin.Web.Controllers
     public class WipoHagueController : Controller
     {
         WipoHagueService svc = new WipoHagueService();
-
-        // GET: wipohague
+      
         public ActionResult Index()
         {
 
@@ -25,28 +24,33 @@ namespace IPOS.Dash.Admin.Web.Controllers
             
             foreach (FCT_DS_WIPOHague item in dataModelList)
             {
-                // Do mapping here
-                WipoHagueViewModel wipo = new WipoHagueViewModel();
-                wipo.Id = item.Id;
-                wipo.GroupType = item.GroupType;
-                wipo.ReportingDate = item.ReportingDate;
-                wipo.DesignsIntlRegistrations = item.DesignsIntlRegistrations;
-            
-                wipo.IntlApplications = item.IntlApplications;
-                wipo.DesignsIntlApplications = item.DesignsIntlApplications;
-                wipo.Renewals = item.Renewals;
-                wipo.DesignsRenewals = item.DesignsRenewals;
+                WipoHagueViewModel wipo = MapToWipoHagueViewModel(item);
 
-                wipo.CreatedDate = item.CreatedDate;
-                wipo.LastUpdateDate = item.LastUpdateDate;              
-                wipo.IsDeleted = item.IsDeleted;
-                wipo.DeletedDate = item.DeletedDate;
-
-
-                wipoHagueList.Add(wipo);                
+                wipoHagueList.Add(wipo);
             }
 
             return View(wipoHagueList);
+        }
+
+        private static WipoHagueViewModel MapToWipoHagueViewModel(FCT_DS_WIPOHague item)
+        {
+            WipoHagueViewModel wipo = new WipoHagueViewModel();
+            wipo.Id = item.Id;
+            wipo.GroupType = item.GroupType;
+            wipo.ReportingDate = item.ReportingDate;
+            wipo.IntlRegistrations = item.IntlRegistrations;
+            wipo.DesignsIntlRegistrations = item.DesignsIntlRegistrations;
+
+            wipo.IntlApplications = item.IntlApplications;
+            wipo.DesignsIntlApplications = item.DesignsIntlApplications;
+            wipo.Renewals = item.Renewals;
+            wipo.DesignsRenewals = item.DesignsRenewals;
+
+            wipo.CreatedDate = item.CreatedDate;
+            wipo.LastUpdateDate = item.LastUpdateDate;
+            wipo.IsDeleted = item.IsDeleted;
+            wipo.DeletedDate = item.DeletedDate;
+            return wipo;
         }
 
         // GET: wipohague/Details/5
@@ -59,19 +63,32 @@ namespace IPOS.Dash.Admin.Web.Controllers
         // GET: wipohague/Create
         public ActionResult Create()
         {
-            FCT_DS_WIPOHague info = new FCT_DS_WIPOHague();
-            return View(info);
+            WipoHagueViewModel newEntry = new WipoHagueViewModel();
+            return View(newEntry);
         }
 
         // POST: wipohague/Create
         [HttpPost]
 
-        public ActionResult Create(FCT_DS_WIPOHague createnew)
+        public ActionResult Create(WipoHagueViewModel newEntry)
         {
             try
             {
-                svc.Create(createnew);
-                return RedirectToAction("Index");
+                FCT_DS_WIPOHague createNew = new FCT_DS_WIPOHague();
+                createNew.IntlRegistrations = newEntry.IntlRegistrations;
+                createNew.DesignsIntlRegistrations = newEntry.DesignsIntlRegistrations;
+                createNew.IntlApplications = newEntry.IntlApplications;
+                createNew.DesignsIntlApplications = newEntry.DesignsIntlApplications;
+                createNew.Renewals = newEntry.Renewals;
+                createNew.DesignsRenewals = newEntry.DesignsRenewals;
+
+                bool result = svc.Create(createNew);
+                if (result == true)
+                {
+                    return RedirectToAction("Index");
+                }
+                else
+                    return View(newEntry);                
             }
             catch
             {
@@ -85,18 +102,10 @@ namespace IPOS.Dash.Admin.Web.Controllers
         {
             WipoHagueViewModel vm = new WipoHagueViewModel();
 
-            FCT_DS_WIPOHague update = svc.Update(Id);
-            vm.GroupType = update.GroupType;
-            vm.ReportingDate = update.ReportingDate;
-            vm.DesignsIntlRegistrations = update.DesignsIntlRegistrations;
-            vm.IntlApplications = update.IntlApplications;
-            vm.DesignsIntlApplications = update.DesignsIntlApplications;
-            vm.Renewals = update.Renewals;
-            vm.DesignsRenewals = update.DesignsRenewals;
-            vm.CreatedDate = update.CreatedDate;
-            vm.LastUpdateDate = update.LastUpdateDate;
-            vm.IsDeleted = update.IsDeleted;
-            vm.DeletedDate = update.DeletedDate;
+            FCT_DS_WIPOHague update = svc.Retrieve(Id);
+
+            vm = MapToWipoHagueViewModel(update);
+           
             return View(vm);
         }
 
@@ -104,21 +113,33 @@ namespace IPOS.Dash.Admin.Web.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
 
-        public ActionResult Update([Bind(Include = "Id,GroupType,ReportingDate,IntlRegistrations,DesignsIntlRegistrations,IntlApplications,DesignsIntlApplications,"+
-            "Renewals,DesignsRenewals,CreatedDate,LastUpdateDate,IsDeleted,DeletedDate")] FCT_DS_WIPOHague update)
+        public ActionResult Update([Bind(Include = "Id,GroupType,ReportingDate,IntlRegistrations,DesignsIntlRegistrations,IntlApplications,"
+            +"DesignsIntlApplications,Renewals,DesignsRenewals,CreatedDate,LastUpdateDate,IsDeleted,DeletedDate")] WipoHagueViewModel vm)
         {
             try
             {
-                FCT_DS_WIPOHague updated = svc.Update(update);
-                if (updated == null)
+                FCT_DS_WIPOHague updatedDB = svc.Retrieve(vm.Id);
+
+                if (!ModelState.IsValid)
                 {
                     return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
                 }
+               
+                updatedDB.ReportingDate = vm.ReportingDate;
+                updatedDB.IntlRegistrations = vm.IntlRegistrations;
+                updatedDB.DesignsIntlRegistrations = vm.DesignsIntlRegistrations;
+                updatedDB.IntlApplications = vm.IntlApplications;
+                updatedDB.DesignsIntlApplications = vm.DesignsIntlApplications;
+                updatedDB.Renewals = vm.Renewals;
+                updatedDB.DesignsRenewals = vm.Renewals;
+
+                svc.Update(updatedDB);
+               
                 return RedirectToAction("Index");
             }
             catch
             {
-                return View(update);
+                return View(vm);
             }
         }
 
