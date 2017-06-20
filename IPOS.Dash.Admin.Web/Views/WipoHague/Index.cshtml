@@ -5,7 +5,7 @@
 }
 
 <h2>Index</h2>
-<h3><span class="asd">System Message</span></h3>
+<h3><span class="sys_msg">System Message</span></h3>
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
@@ -13,7 +13,6 @@
     <tr>
         <th>
             Group Type 
-            @*@Html.DisplayNameFor(model => model.GroupType)*@
         </th>
 
         <th>
@@ -71,8 +70,7 @@
             @item.FormatDateReportingDate
         </td>
         <td>
-            @*@item.IntlRegistrations*@
-            @Html.DisplayFor(modelItem => item.IntlRegistrations)
+            @item.IntlRegistrations         
         </td>
         <td>
             @item.DesignsIntlRegistrations

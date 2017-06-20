@@ -7,7 +7,7 @@ namespace IPOS.Dash.Admin.Web.Models
 {
     public class WipoHagueViewModel :   BaseView
     {
-        BaseView b = new BaseView();
+        BaseView baseview = new BaseView();
 
         public Guid Id { get; set; }
         public string GroupType { get; set; }
@@ -29,7 +29,7 @@ namespace IPOS.Dash.Admin.Web.Models
             {
                 if (CreatedDate != null)
                 {
-                    return b.FormattedDate(CreatedDate);
+                    return baseview.FormattedDate(CreatedDate);
                 }
                 return "-";
             }
@@ -40,7 +40,7 @@ namespace IPOS.Dash.Admin.Web.Models
             {
                 if (LastUpdateDate != null)
                 {
-                    return b.FormattedDate(LastUpdateDate);
+                    return baseview.FormattedDate(LastUpdateDate);
                 }
                 return "-";
             }
@@ -51,7 +51,7 @@ namespace IPOS.Dash.Admin.Web.Models
             {
                 if (DeletedDate != null)
                 {
-                    return b.FormattedDate(DeletedDate);
+                    return baseview.FormattedDate(DeletedDate);
                 }
                 return "-";
             }
@@ -62,7 +62,7 @@ namespace IPOS.Dash.Admin.Web.Models
             {
                 if (ReportingDate != null)
                 {
-                    return b.FormattedDate(ReportingDate);
+                    return baseview.FormattedDate(ReportingDate);
                 }
                 return "-";
             }
