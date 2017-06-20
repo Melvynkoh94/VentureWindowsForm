@@ -10,17 +10,29 @@ namespace IPOS.Dash.Admin.Web.Models
         BaseView baseview = new BaseView();
 
         public Guid Id { get; set; }
+
         public string GroupType { get; set; }
+
         public DateTime ReportingDate { get; set; }
+
         public int IntlRegistrations { get; set; }
+
         public int DesignsIntlRegistrations { get; set; }
+
         public int IntlApplications{ get; set; }
+
         public int DesignsIntlApplications { get; set; }
+
         public int Renewals { get; set; }
+
         public int DesignsRenewals { get; set; }
+
         public DateTime CreatedDate { get; set; }
+
         public DateTime? LastUpdateDate {get; set; }
+
         public bool? IsDeleted { get; set; }
+
         public DateTime? DeletedDate { get; set; }
 
         public string FormatDateCreateDate

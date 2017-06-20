@@ -26,5 +26,6 @@ namespace IPOS.Dash.Admin.Data
         }
     
         public virtual DbSet<FCT_DS_WIPOHague> FCT_DS_WIPOHague { get; set; }
+        public virtual DbSet<dw_ExaminerCount> dw_ExaminerCount { get; set; }
     }
 }

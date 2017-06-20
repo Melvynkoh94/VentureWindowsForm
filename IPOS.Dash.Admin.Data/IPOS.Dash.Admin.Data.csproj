@@ -66,6 +66,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>AdminDbContext.edmx</DependentUpon>
     </Compile>
+    <Compile Include="dw_ExaminerCount.cs">
+      <DependentUpon>AdminDbContext.tt</DependentUpon>
+    </Compile>
     <Compile Include="FCT_DS_WIPOHague.cs">
       <DependentUpon>AdminDbContext.tt</DependentUpon>
     </Compile>
