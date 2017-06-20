@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-
+ 
 namespace IPOS.Dash.Admin.Web.Models
 {
     public class WipoHagueViewModel :   BaseView
@@ -52,7 +52,8 @@ namespace IPOS.Dash.Admin.Web.Models
             {
                 if (LastUpdateDate != null)
                 {
-                    return b.FormattedDate(LastUpdateDate);
+                    DateTime newSelectedDate = LastUpdateDate.Value;
+                    return b.FormattedDate(newSelectedDate);
                 }
                 return "-";
             }
@@ -63,7 +64,8 @@ namespace IPOS.Dash.Admin.Web.Models
             {
                 if (DeletedDate != null)
                 {
-                    return b.FormattedDate(DeletedDate);
+                    DateTime newSelectedDate = DeletedDate.Value;
+                    return b.FormattedDate(newSelectedDate);
                 }
                 return "-";
             }

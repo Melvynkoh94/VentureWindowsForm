@@ -1,0 +1,93 @@
+﻿
+@model IPOS.Dash.Admin.Web.Models.ExaminerCountViewModel
+
+@{
+    ViewBag.Title = "Examiner Count";
+}
+
+<div class="container">
+    <label class="sys_msg">System Message</label>
+    <h3>Update Examiner Count Threshold</h3>
+
+@using (Html.BeginForm("Index", "ExaminerCount"))
+{
+            <table cellpadding="10">
+                <tr>
+                    <td style="text-align:right;">@Html.Label("Current Threshold : ")</td>
+                    <td>
+                        <!-- TODO: Take from the lastest Threshold entry-->
+                        @{   
+                            int last = 0;
+                            if (Model.ExaminerCounts.Count() > 0)
+                            {
+                                last = Model.ExaminerCounts.LastOrDefault().Threshold;
+                            }
+                            else
+                            {
+                                last = 0;
+                            }
+                        }
+
+                        <label>@last</label>
+                    </tr>
+                    <tr>
+                        <td style="text-align:right;"><label>New Threshold :</label></td>
+                        <td>@Html.EditorFor(model => model.ExaminerCount.Threshold, new { htmlAttributes = new { @class = "form-control" } })</td>
+                    </tr>
+                    <tr>
+                        <td style="text-align:right;"><label>Effective Date (yyyy-MM-dd):</label></td>
+                        <td>@Html.EditorFor(model => model.ExaminerCount.EffectiveDate, new { htmlAttributes = new { @class = "form-control" } })</td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td style="padding-top: 15px;">    
+                            <input type="submit" value="Update" class="btn btn-default"/>   
+                        </td>
+                    </tr>
+                </table>
+
+
+                <br>
+}
+
+    <hr>
+
+    <!-- Show Results -->
+    <div class="container">
+        <h4>Threshold History</h4>
+        <table class="table">
+            <tr>
+                <th>
+                    <label>Effective Date</label>
+                </th>
+                <th>
+                    <label>Expiry Date</label>
+                </th>
+                <th>
+                    <label>Threshold</label>
+                </th>
+          
+            </tr>
+      
+            @foreach (var item in Model.ExaminerCounts.Reverse())
+            {
+                <tr>
+                    <td>
+                        @item.FormatDateEffectiveDate
+                    </td>
+                    <td>
+                        @item.FormatDateExpiryDate
+                    </td>
+                    <td>
+                        @item.Threshold
+                    </td>   
+       
+                </tr>
+            }
+
+        </table>
+
+    </div>
+
+
+</div>

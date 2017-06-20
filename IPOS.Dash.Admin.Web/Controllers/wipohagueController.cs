@@ -38,7 +38,10 @@ namespace IPOS.Dash.Admin.Web.Controllers
                 wipo.DesignsRenewals = item.DesignsRenewals;
 
                 wipo.CreatedDate = item.CreatedDate;
-                wipo.LastUpdateDate = item.LastUpdateDate;              
+                if (item.LastUpdateDate != null) {
+                    wipo.LastUpdateDate = item.LastUpdateDate;
+                }
+                             
                 wipo.IsDeleted = item.IsDeleted;
                 wipo.DeletedDate = item.DeletedDate;
 

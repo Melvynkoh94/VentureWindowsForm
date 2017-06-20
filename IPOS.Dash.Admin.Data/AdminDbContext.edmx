@@ -5,6 +5,19 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="AdminDbContext.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="dw_ExaminerCount">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Threshold" Type="int" Nullable="false" />
+          <Property Name="EffectiveDate" Type="datetime" Nullable="false" />
+          <Property Name="ExpiryDate" Type="datetime" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+          <Property Name="LastUpdateDate" Type="datetime" />
+          <Property Name="IsDeleted" Type="bit" />
+          <Property Name="DeletedDate" Type="datetime" />
+        </EntityType>
         <EntityType Name="FCT_DS_WIPOHague">
           <Key>
             <PropertyRef Name="Id" />
@@ -24,6 +37,7 @@
           <Property Name="DeletedDate" Type="datetime" />
         </EntityType>
         <EntityContainer Name="AdminDbContextStoreContainer">
+          <EntitySet Name="dw_ExaminerCount" EntityType="Self.dw_ExaminerCount" Schema="dbo" Table="dw.ExaminerCount" store:Type="Tables" />
           <EntitySet Name="FCT_DS_WIPOHague" EntityType="Self.FCT_DS_WIPOHague" Schema="dw" store:Type="Tables" />
         </EntityContainer>
       </Schema></edmx:StorageModels>
@@ -32,6 +46,7 @@
       <Schema Namespace="AdminDbContext" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="IposAdminEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="FCT_DS_WIPOHague" EntityType="AdminDbContext.FCT_DS_WIPOHague" />
+          <EntitySet Name="dw_ExaminerCount" EntityType="AdminDbContext.dw_ExaminerCount" />
         </EntityContainer>
         <EntityType Name="FCT_DS_WIPOHague">
           <Key>
@@ -49,6 +64,19 @@
           <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="LastUpdateDate" Type="DateTime" Precision="3" Nullable="true" />
           <Property Name="IsDeleted" Type="Boolean" Nullable="true" />
+          <Property Name="DeletedDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="dw_ExaminerCount">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="Threshold" Type="Int32" Nullable="false" />
+          <Property Name="EffectiveDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ExpiryDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="LastUpdateDate" Type="DateTime" Precision="3" />
+          <Property Name="IsDeleted" Type="Boolean" />
           <Property Name="DeletedDate" Type="DateTime" Precision="3" />
         </EntityType>
       </Schema>
@@ -73,6 +101,20 @@
                 <ScalarProperty Name="ReportingDate" ColumnName="ReportingDate" />
                 <ScalarProperty Name="GroupType" ColumnName="GroupType" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="dw_ExaminerCount">
+            <EntityTypeMapping TypeName="AdminDbContext.dw_ExaminerCount">
+              <MappingFragment StoreEntitySet="dw_ExaminerCount">
+                <ScalarProperty Name="DeletedDate" ColumnName="DeletedDate" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="LastUpdateDate" ColumnName="LastUpdateDate" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="ExpiryDate" ColumnName="ExpiryDate" />
+                <ScalarProperty Name="EffectiveDate" ColumnName="EffectiveDate" />
+                <ScalarProperty Name="Threshold" ColumnName="Threshold" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
