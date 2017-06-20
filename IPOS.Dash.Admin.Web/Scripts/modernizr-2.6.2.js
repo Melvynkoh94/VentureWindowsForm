@@ -26,7 +26,7 @@
  * www.modernizr.com
  *
  * Copyright (c) Faruk Ates, Paul Irish, Alex Sexton
- * Available under the BSD and MIT licenses: www.modernizr.com/license/
+ * Available under the BSD and MIT licenses: www.moderniz r.com/license/
  */
 
 /*

@@ -15,43 +15,24 @@ namespace IPOS.Dash.Admin.Web.Controllers
     public class WipoHagueController : Controller
     {
         WipoHagueService svc = new WipoHagueService();
-
-        // GET: wipohague
+      
         public ActionResult Index()
         {
 
             List<WipoHagueViewModel> wipoHagueList = new List<WipoHagueViewModel>();
             List<FCT_DS_WIPOHague> dataModelList = svc.GetAll();
             
-            foreach (FCT_DS_WIPOHague item in dataModelList)
+            foreach (FCT_DS_WIPOHague wipo in dataModelList)
             {
-                // Do mapping here
-                WipoHagueViewModel wipo = new WipoHagueViewModel();
-                wipo.Id = item.Id;
-                wipo.GroupType = item.GroupType;
-                wipo.ReportingDate = item.ReportingDate;
-                wipo.DesignsIntlRegistrations = item.DesignsIntlRegistrations;
-            
-                wipo.IntlApplications = item.IntlApplications;
-                wipo.DesignsIntlApplications = item.DesignsIntlApplications;
-                wipo.Renewals = item.Renewals;
-                wipo.DesignsRenewals = item.DesignsRenewals;
+                WipoHagueViewModel wipoVM = MapToWipoHagueViewModel(wipo);
 
-                wipo.CreatedDate = item.CreatedDate;
-                if (item.LastUpdateDate != null) {
-                    wipo.LastUpdateDate = item.LastUpdateDate;
-                }
-                             
-                wipo.IsDeleted = item.IsDeleted;
-                wipo.DeletedDate = item.DeletedDate;
-
-
-                wipoHagueList.Add(wipo);                
+                wipoHagueList.Add(wipoVM);
             }
 
             return View(wipoHagueList);
         }
 
+       
         // GET: wipohague/Details/5
         public ActionResult Details(int id)
         {
@@ -62,19 +43,33 @@ namespace IPOS.Dash.Admin.Web.Controllers
         // GET: wipohague/Create
         public ActionResult Create()
         {
-            FCT_DS_WIPOHague info = new FCT_DS_WIPOHague();
-            return View(info);
+            WipoHagueViewModel wipoVM = new WipoHagueViewModel();
+            return View(wipoVM);
         }
 
         // POST: wipohague/Create
         [HttpPost]
 
-        public ActionResult Create(FCT_DS_WIPOHague createnew)
+        public ActionResult Create(WipoHagueViewModel wipoVM)
         {
             try
             {
-                svc.Create(createnew);
-                return RedirectToAction("Index");
+                FCT_DS_WIPOHague wipo = new FCT_DS_WIPOHague();
+                wipo.ReportingDate = wipoVM.ReportingDate;
+                wipo.IntlRegistrations = wipoVM.IntlRegistrations;
+                wipo.DesignsIntlRegistrations = wipoVM.DesignsIntlRegistrations;
+                wipo.IntlApplications = wipoVM.IntlApplications;
+                wipo.DesignsIntlApplications = wipoVM.DesignsIntlApplications;
+                wipo.Renewals = wipoVM.Renewals;
+                wipo.DesignsRenewals = wipoVM.DesignsRenewals;
+
+                bool result = svc.Create(wipo);
+                if (result == true)
+                {
+                    return RedirectToAction("Index");
+                }
+                else
+                    return View(wipoVM);                
             }
             catch
             {
@@ -83,45 +78,47 @@ namespace IPOS.Dash.Admin.Web.Controllers
         }
 
         [HttpGet]
-        // GET: wipohague/Edit/5
+        // GET: wipohague/Update/5
         public ActionResult Update(Guid? Id)
         {
-            WipoHagueViewModel vm = new WipoHagueViewModel();
+            WipoHagueViewModel wipoVM = new WipoHagueViewModel();
 
-            FCT_DS_WIPOHague update = svc.Update(Id);
-            vm.GroupType = update.GroupType;
-            vm.ReportingDate = update.ReportingDate;
-            vm.DesignsIntlRegistrations = update.DesignsIntlRegistrations;
-            vm.IntlApplications = update.IntlApplications;
-            vm.DesignsIntlApplications = update.DesignsIntlApplications;
-            vm.Renewals = update.Renewals;
-            vm.DesignsRenewals = update.DesignsRenewals;
-            vm.CreatedDate = update.CreatedDate;
-            vm.LastUpdateDate = update.LastUpdateDate;
-            vm.IsDeleted = update.IsDeleted;
-            vm.DeletedDate = update.DeletedDate;
-            return View(vm);
+            FCT_DS_WIPOHague wipo = svc.Retrieve(Id);
+
+            wipoVM = MapToWipoHagueViewModel(wipo);
+           
+            return View(wipoVM);
         }
 
-        // POST: wipohague/Edit/5
+        // POST: wipohague/Update/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-
-        public ActionResult Update([Bind(Include = "Id,GroupType,ReportingDate,IntlRegistrations,DesignsIntlRegistrations,IntlApplications,DesignsIntlApplications,"+
-            "Renewals,DesignsRenewals,CreatedDate,LastUpdateDate,IsDeleted,DeletedDate")] FCT_DS_WIPOHague update)
+        public ActionResult Update(WipoHagueViewModel wipoVM)
         {
             try
             {
-                FCT_DS_WIPOHague updated = svc.Update(update);
-                if (updated == null)
+                FCT_DS_WIPOHague wipo = svc.Retrieve(wipoVM.Id);
+
+                if (!ModelState.IsValid)
                 {
                     return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
                 }
+
+                wipo.ReportingDate = wipoVM.ReportingDate;
+                wipo.IntlRegistrations = wipoVM.IntlRegistrations;
+                wipo.DesignsIntlRegistrations = wipoVM.DesignsIntlRegistrations;
+                wipo.IntlApplications = wipoVM.IntlApplications;
+                wipo.DesignsIntlApplications = wipoVM.DesignsIntlApplications;
+                wipo.Renewals = wipoVM.Renewals;
+                wipo.DesignsRenewals = wipoVM.DesignsRenewals;
+
+                svc.Update(wipo);
+               
                 return RedirectToAction("Index");
             }
             catch
             {
-                return View(update);
+                return View(wipoVM);
             }
         }
 
@@ -138,7 +135,6 @@ namespace IPOS.Dash.Admin.Web.Controllers
             try
             {
                 // TODO: Add delete logic here
-
                 return RedirectToAction("Index");
             }
             catch
@@ -146,5 +142,26 @@ namespace IPOS.Dash.Admin.Web.Controllers
                 return View();
             }
         }
+
+
+        private static WipoHagueViewModel MapToWipoHagueViewModel(FCT_DS_WIPOHague wipo)
+        {
+            WipoHagueViewModel wipoVM = new WipoHagueViewModel();
+            wipoVM.Id = wipo.Id;
+            wipoVM.GroupType = wipo.GroupType;
+            wipoVM.ReportingDate = wipo.ReportingDate;
+            wipoVM.IntlRegistrations = wipo.IntlRegistrations;
+            wipoVM.DesignsIntlRegistrations = wipo.DesignsIntlRegistrations;
+            wipoVM.IntlApplications = wipo.IntlApplications;
+            wipoVM.DesignsIntlApplications = wipo.DesignsIntlApplications;
+            wipoVM.Renewals = wipo.Renewals;
+            wipoVM.DesignsRenewals = wipo.DesignsRenewals;
+            wipoVM.CreatedDate = wipo.CreatedDate;
+            wipoVM.LastUpdateDate = wipo.LastUpdateDate;
+            wipoVM.IsDeleted = wipo.IsDeleted;
+            wipoVM.DeletedDate = wipo.DeletedDate;
+            return wipoVM;
+        }
+
     }
 }
