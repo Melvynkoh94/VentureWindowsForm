@@ -18,6 +18,9 @@ namespace IPOS.Dash.Admin.Web.Models
             return date.ToString(format);
         }
 
-    
+        internal string FormattedDate(DateTime? lastUpdateDate)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
