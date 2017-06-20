@@ -25,7 +25,7 @@ textarea {
 .sys_msg {
     color:#ff0000;
 }
-hr { 
+hr.line{ 
     display: block;
     margin-top: 0.5em;
     margin-bottom: 0.5em;
