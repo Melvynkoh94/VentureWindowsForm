@@ -34,3 +34,7 @@ hr .line{
     border-style: inset;
     border-width: 1px;
 } 
+
+table .examinerTable {
+    padding:10px;
+}
