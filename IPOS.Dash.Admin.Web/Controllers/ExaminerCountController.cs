@@ -81,7 +81,10 @@ namespace IPOS.Dash.Admin.Web.Controllers
                 examCount.LastUpdateDate = item.LastUpdateDate;
                 examCount.IsDeleted = item.IsDeleted;
                 examCount.DeletedDate = item.DeletedDate;
+                examCount.Side = item.Side;
+
                 examinerCountList.Add(examCount);
+
             }
 
             return examinerCountList;

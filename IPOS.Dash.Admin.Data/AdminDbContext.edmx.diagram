@@ -5,8 +5,8 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="1b9f929ce2fd4bc997941992a3f562a5" Name="Diagram1">
-        <EntityTypeShape EntityType="AdminDbContext.FCT_DS_WIPOHague" Width="1.5" PointX="6.375" PointY="1.75" />
-        <EntityTypeShape EntityType="AdminDbContext.dw_ExaminerCount" Width="1.5" PointX="8.625" PointY="1.75" />
+        <EntityTypeShape EntityType="AdminDbContext.FCT_DS_WIPOHague" Width="1.5" PointX="1.75" PointY="1.375" />
+        <EntityTypeShape EntityType="AdminDbContext.dw_ExaminerCount" Width="1.5" PointX="4.375" PointY="1.375" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

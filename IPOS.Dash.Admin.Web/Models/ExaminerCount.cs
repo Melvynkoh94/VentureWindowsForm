@@ -48,5 +48,8 @@ namespace IPOS.Dash.Admin.Web.Models
                 return "-";
             }
         }
+
+        public string Side { get; set; }
+
     }
 }

@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - IPOS-DASH</title>
+    <title>@ViewBag.Title - VENTURE</title>
 
     @RenderPage("~/Views/Shared/_cssAssets.cshtml")
 </head>
@@ -16,13 +16,14 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("IPOS-DASH", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("VENTURE", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("Machine Check List", "Index", "ExaminerCount/Index")</li>
+
                     <li>@Html.ActionLink("WIPO-Hague Records", "Index", "wipohague/Index") </li>
                     <li>@Html.ActionLink("Create New WIPO-Hague", "Create", "wipohague/Create")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
                     <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
                 </ul>
             </div>

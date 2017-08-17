@@ -22,5 +22,6 @@ namespace IPOS.Dash.Admin.Data
         public Nullable<System.DateTime> LastUpdateDate { get; set; }
         public Nullable<bool> IsDeleted { get; set; }
         public Nullable<System.DateTime> DeletedDate { get; set; }
+        public string Side { get; set; }
     }
 }

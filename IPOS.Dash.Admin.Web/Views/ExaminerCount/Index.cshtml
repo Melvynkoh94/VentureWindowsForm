@@ -2,18 +2,19 @@
 @model IPOS.Dash.Admin.Web.Models.ExaminerCountViewModel
 
 @{
-    ViewBag.Title = "Examiner Count";
+    ViewBag.Title = "Machine Check";
 }
 
 <div class="container">
-    <label class="sys_msg">System Message</label>
-    <h3>Update Examiner Count Threshold</h3>
+   
+    <h3>MANUFACTURING PROCESS INSTRUCTION</h3>
+    <label class="sys_msg">Instructions will be placed here</label>
 
 @using (Html.BeginForm("Index", "ExaminerCount"))
 {
         <table>
             <tr>
-                <td class="examinerTable" style="text-align:right;">@Html.Label("Current Threshold : ")</td>
+                <td class="examinerTable" style="text-align:right;"><label>Enter Model No.:</label></td>
                 <td class="examinerTable">
                     <!-- TODO: Take from the lastest Threshold entry-->
                     @{
@@ -21,6 +22,7 @@
                         if (Model.ExaminerCounts.Count() > 0)
                         {
                             last = Model.ExaminerCounts.LastOrDefault().Threshold;
+
                         }
                         else
                         {
@@ -28,35 +30,51 @@
                         }
                     }
 
-                    <label>@last</label>
+                    @*<label>@last</label>*@
+                    <label>ABC</label>
             </tr>
             <tr>
-                <td class="examinerTable" style="text-align:right;"><label>New Threshold :</label></td>
+                <td class="examinerTable" style="text-align:right; "><label>PART NUMBER:</label></td>
                 <td class="examinerTable">@Html.EditorFor(model => model.ExaminerCount.Threshold, new { htmlAttributes = new { @class = "form-control" } })</td>
             </tr>
+
             <tr>
-                <td class="examinerTable" style="text-align:right;"><label>Effective Date (yyyy-MM-dd):</label></td>
-                <td class="examinerTable">
-                    <div class="form-group">
-                        <div class='input-group date' id='datetimepicker'>
-                            @Html.EditorFor(model => model.ExaminerCount.EffectiveDate, new { htmlAttributes = new { @class = "form-control" } })
-                            <span class="input-group-addon">
-                                <span class="glyphicon glyphicon-calendar"></span>
-                            </span>
-                        </div>
-                    </div>
-                </td>
+                <td class="examinerTable" style="text-align:right; "><label>TABLE:</label></td>
+                <td class="examinerTable">@Html.EditorFor(model => model.ExaminerCount.Side, new { htmlAttributes = new { @class = "form-control" } })</td>
             </tr>
+
+            <tr>
+                <td class="examinerTable" style="text-align:right; "><label>REEL:</label></td>
+                <td class="examinerTable">@Html.EditorFor(model => model.ExaminerCount.Threshold, new { htmlAttributes = new { @class = "form-control" } })</td>
+            </tr>
+
+            <tr>
+                <td class="examinerTable" style="text-align:right; "><label>SIDE:</label></td>
+                <td class="examinerTable">@Html.EditorFor(model => model.ExaminerCount.Side, new { htmlAttributes = new { @class = "form-control" } })</td>
+            </tr>
+
+            <tr>
+                <td class="examinerTable" style="text-align:right;"><label>QUANTITY:</label></td>
+                <td class="examinerTable">@Html.EditorFor(model => model.ExaminerCount.Threshold, new { htmlAttributes = new { @class = "form-control" } })</td>
+            </tr>
+
+
             <tr>
                 <td class="examinerTable"></td>
                 <td class="examinerTable" style="padding-top: 15px;">
-                    <input type="submit" value="Update" class="btn btn-default" />
+                    <input type="submit" value="Confirm" class="btn btn-default" />
                 </td>
             </tr>
         </table>
 
         <br>
-                            
+        <table class="table">
+            <tr>
+                <th>
+                    <label>QUANTITY CHECK:   04/100</label>
+                </th>
+                </tr>
+        </table>                          
 }
     <!-- End of Form-->
 
@@ -64,17 +82,26 @@
 
     <!-- Show Results -->
     <div class="container">
-        <h4>Threshold History</h4>
+        <h4>CHECKLIST</h4>
         <table class="table">
-            <tr>
+            <tr>         
                 <th>
-                    <label>Effective Date</label>
+                    <label>PART NO.</label>
                 </th>
                 <th>
-                    <label>Expiry Date</label>
+                    <label>TABLE</label>
+                </th>   
+                <th>
+                    <label>REEL</label>
                 </th>
                 <th>
-                    <label>Threshold</label>
+                    <label>SIDE</label>
+                </th>
+                <th>
+                    <label>QUANTITY</label>
+                </th>
+                <th>
+                    <label>STATUS</label>
                 </th>
           
             </tr>
@@ -83,13 +110,22 @@
             {
                 <tr>
                     <td>
-                        @item.FormatDateEffectiveDate
-                    </td>
-                    <td>
-                        @item.FormatDateExpiryDate
+                        @item.Threshold
                     </td>
                     <td>
                         @item.Threshold
+                    </td>
+                    <td>
+                        @item.Threshold
+                    </td>
+                    <td>
+                        @item.Side
+                    </td>
+                    <td>
+                        123
+                    </td>
+                    <td>
+                        OK
                     </td>   
        
                 </tr>

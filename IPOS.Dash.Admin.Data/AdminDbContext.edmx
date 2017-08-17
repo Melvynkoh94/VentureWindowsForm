@@ -11,12 +11,13 @@
           </Key>
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Threshold" Type="int" Nullable="false" />
-          <Property Name="EffectiveDate" Type="datetime" Nullable="false" />
-          <Property Name="ExpiryDate" Type="datetime" Nullable="false" />
+          <Property Name="EffectiveDate" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="ExpiryDate" Type="datetime2" Precision="7" Nullable="false" />
           <Property Name="CreatedDate" Type="datetime" Nullable="false" />
           <Property Name="LastUpdateDate" Type="datetime" />
           <Property Name="IsDeleted" Type="bit" />
           <Property Name="DeletedDate" Type="datetime" />
+          <Property Name="Side" Type="varchar" MaxLength="10" />
         </EntityType>
         <EntityType Name="FCT_DS_WIPOHague">
           <Key>
@@ -72,12 +73,13 @@
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Threshold" Type="Int32" Nullable="false" />
-          <Property Name="EffectiveDate" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="ExpiryDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="EffectiveDate" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="ExpiryDate" Type="DateTime" Nullable="false" Precision="7" />
           <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="LastUpdateDate" Type="DateTime" Precision="3" />
           <Property Name="IsDeleted" Type="Boolean" />
           <Property Name="DeletedDate" Type="DateTime" Precision="3" />
+          <Property Name="Side" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -107,6 +109,7 @@
           <EntitySetMapping Name="dw_ExaminerCount">
             <EntityTypeMapping TypeName="AdminDbContext.dw_ExaminerCount">
               <MappingFragment StoreEntitySet="dw_ExaminerCount">
+                <ScalarProperty Name="Side" ColumnName="Side" />
                 <ScalarProperty Name="DeletedDate" ColumnName="DeletedDate" />
                 <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
                 <ScalarProperty Name="LastUpdateDate" ColumnName="LastUpdateDate" />
